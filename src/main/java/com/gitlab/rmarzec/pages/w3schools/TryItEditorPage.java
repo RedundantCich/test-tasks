@@ -7,8 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TryItEditorPage {
+    private static final Logger logger = LoggerFactory.getLogger(TryItEditorPage.class);
     private final FrameUtil frameUtil;
     @FindBy(id = "runbtn")
     WebElement runButton;
@@ -29,7 +32,7 @@ public class TryItEditorPage {
     public TryItEditorPage printPreviewPaneH1() {
         frameUtil.executeInFrame("iframeResult", () -> {
             String textFromElement = h1Element.getText();
-            System.out.println("H1 from Preview Pane:\n" + textFromElement);
+            logger.info("H1 from Preview Pane:\n{}", textFromElement);
         });
         return this;
     }
@@ -37,7 +40,7 @@ public class TryItEditorPage {
     public void printPreviewPaneSelectedOptionFromDropdown() {
         frameUtil.executeInFrame("iframeResult", () -> {
             Dropdown carsDropdown = new Dropdown(carsSelect);
-            System.out.printf("Text and value from current selector option:\n%s, %s \n",
+            logger.info("Text and value from current selector option:\n{}, {} \n",
                     carsDropdown.getSelectedText(), carsDropdown.getSelectedValue());
         });
     }

@@ -24,7 +24,7 @@ public class Task4Test extends BaseTest {
                 .clickShortsLink();
         ShortsPage shortsYtPage = new ShortsPage(driver);
         shortsYtPage
-                .printCurrentYoutuberName();
+                .logCurrentYoutuberName();
         shortsYtPage.getSidebar()
                 .clickHomeLink();
         mainYtPage.waitForPageLoad().getHeader()

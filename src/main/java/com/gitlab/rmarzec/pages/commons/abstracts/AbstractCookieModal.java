@@ -41,7 +41,7 @@ public abstract class AbstractCookieModal implements CookieHandler {
             button.click();
             wait.until(ExpectedConditions.invisibilityOf(getCookieOverlay()));
         } else {
-            logger.info("No cookies modal detected");
+            logger.warning("No cookies modal detected");
         }
     }
 }

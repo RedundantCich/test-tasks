@@ -9,10 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
 public class ShortsPage {
+    private static final Logger logger = LoggerFactory.getLogger(ShortsPage.class);
     private final WebDriverWait wait;
     @Getter
     public SideBar sidebar;
@@ -31,7 +34,7 @@ public class ShortsPage {
         return currentShortYoutuberLink.getText();
     }
 
-    public void printCurrentYoutuberName() {
-        System.out.printf("First Shorts' Youtuber Name:\n%s\n", getCurrentYoutuberName());
+    public void logCurrentYoutuberName() {
+        logger.info("First Shorts' Youtuber Name:\n{}\n", getCurrentYoutuberName());
     }
 }

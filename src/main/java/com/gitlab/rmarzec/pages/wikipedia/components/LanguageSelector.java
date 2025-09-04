@@ -1,10 +1,5 @@
 package com.gitlab.rmarzec.pages.wikipedia.components;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +7,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LanguageSelector {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private Map<String, Object> languageMap = new HashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(LanguageSelector.class);
+    private final WebDriverWait wait;
+    private final Map<String, Object> languageMap = new HashMap<>();
 
     @FindBy(id = "p-lang-btn")
     private WebElement languageSelectorButton;
@@ -25,11 +27,10 @@ public class LanguageSelector {
     private WebElement fullLanguageSelectorMenu;
 
     public LanguageSelector(WebDriver driver) {
-        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         PageFactory.initElements(driver, this);
     }
-    
+
     public LanguageSelector clickLanguageSelectorButton() {
         wait.until(ExpectedConditions.visibilityOf(languageSelectorButton));
         languageSelectorButton.click();
@@ -45,14 +46,13 @@ public class LanguageSelector {
         return this;
     }
 
-    public LanguageSelector printLanguagesToConsole() {
+    public void logLanguagesToConsole() {
         for (Map.Entry<String, Object> entry : languageMap.entrySet()) {
-            System.out.println("Language: " + entry.getKey());
+            logger.info("Language:\n{}", entry.getKey());
             // special rule for English - business requirement
             if (entry.getKey().equals("English")) {
-                System.out.println("URL: " + entry.getValue());
+                logger.info("URL:\n{}", entry.getValue());
             }
         }
-        return this;
     }
 }
