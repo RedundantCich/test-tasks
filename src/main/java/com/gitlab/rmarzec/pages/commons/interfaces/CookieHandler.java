@@ -1,4 +1,4 @@
-package com.gitlab.rmarzec.pages.interfaces;
+package com.gitlab.rmarzec.pages.commons.interfaces;
 
 public interface CookieHandler {
 
@@ -9,6 +9,7 @@ public interface CookieHandler {
 
     /**
      * Check if the cookie banner is displayed
+     *
      * @return true if displayed, false otherwise
      */
     boolean isCookieModalDisplayed();

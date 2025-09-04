@@ -1,6 +1,6 @@
 package com.gitlab.rmarzec.pages.google;
 
-import com.gitlab.rmarzec.pages.google.components.CookieModal;
+import com.gitlab.rmarzec.pages.google.components.GoogleCookieModal;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ import java.time.Duration;
 public class MainSearchPage {
     private final WebDriverWait wait;
     @Getter
-    public CookieModal cookieModal;
+    public GoogleCookieModal cookieModal;
 
     @FindBy(name = "q")
     WebElement searchBox;
@@ -26,7 +26,7 @@ public class MainSearchPage {
 
     public MainSearchPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        cookieModal = new CookieModal(driver);
+        cookieModal = new GoogleCookieModal(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 

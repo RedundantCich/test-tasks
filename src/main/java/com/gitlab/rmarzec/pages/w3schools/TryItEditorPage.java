@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-
 public class TryItEditorPage {
     private final FrameUtil frameUtil;
     @FindBy(id = "runbtn")
@@ -24,11 +22,6 @@ public class TryItEditorPage {
     public TryItEditorPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         frameUtil = new FrameUtil(driver);
-
-        // We access TryItEditor page only indirectly,
-        // To be updated if that changes
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
 
         WaitUtil.waitForPageLoadAndElement(driver, 3, runButton);
     }

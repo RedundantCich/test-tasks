@@ -1,9 +1,9 @@
 package com.gitlab.rmarzec.pages.youtube;
 
 import com.gitlab.rmarzec.framework.utils.WaitUtil;
-import com.gitlab.rmarzec.pages.youtube.components.CookieModal;
 import com.gitlab.rmarzec.pages.youtube.components.Header;
 import com.gitlab.rmarzec.pages.youtube.components.SideBar;
+import com.gitlab.rmarzec.pages.youtube.components.YoutubeCookieModal;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 public class MainPage {
     private final WebDriver driver;
     @Getter
-    public CookieModal cookieModal;
+    public YoutubeCookieModal cookieModal;
     @Getter
     public SideBar sidebar;
     @Getter
@@ -23,7 +23,7 @@ public class MainPage {
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
-        cookieModal = new CookieModal(driver);
+        cookieModal = new YoutubeCookieModal(driver);
         sidebar = new SideBar(driver);
         header = new Header(driver);
         PageFactory.initElements(driver, this);
