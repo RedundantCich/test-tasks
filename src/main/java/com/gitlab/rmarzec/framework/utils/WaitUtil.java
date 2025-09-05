@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 public class WaitUtil {
 
     private static void waitForPageLoad(WebDriver driver, int timeoutInSeconds) {
@@ -22,6 +24,16 @@ public class WaitUtil {
         waitForPageLoad(driver, timeoutInSeconds);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-        wait.until(ExpectedConditions.visibilityOf(webElement));
+        wait.until(visibilityOf(webElement));
+    }
+
+    public static void waitForPageLoadAndElement(WebDriver driver, int timeoutInSeconds, WebElement webElement, WebElement webElementAlt) {
+        waitForPageLoad(driver, timeoutInSeconds);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        wait.until(ExpectedConditions.or(
+                visibilityOf(webElement),
+                visibilityOf(webElementAlt)
+        ));
     }
 }

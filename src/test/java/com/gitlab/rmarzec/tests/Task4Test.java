@@ -3,6 +3,7 @@ package com.gitlab.rmarzec.tests;
 import com.gitlab.rmarzec.base.BaseTest;
 import com.gitlab.rmarzec.model.YTTile;
 import com.gitlab.rmarzec.pages.youtube.MainPage;
+import com.gitlab.rmarzec.pages.youtube.SearchResultsPage;
 import com.gitlab.rmarzec.pages.youtube.ShortsPage;
 import org.testng.annotations.Test;
 
@@ -12,7 +13,8 @@ import java.util.List;
 
 public class Task4Test extends BaseTest {
     String ytUrl = "https://www.youtube.com/";
-    String ytSearchQuery = "live";
+    String ytSearchQuery = "Live";
+    List<YTTile> ytTileList = new ArrayList<>();
 
     @Test
     public void youtubeVideoListingTest() {
@@ -27,12 +29,12 @@ public class Task4Test extends BaseTest {
                 .logCurrentYoutuberName();
         shortsYtPage.getSidebar()
                 .clickHomeLink();
-        mainYtPage.waitForPageLoad().getHeader()
+        MainPage returnedMainYtPage = new MainPage(driver);
+        returnedMainYtPage.getHeader()
                 .enterSearchInput(ytSearchQuery)
                 .clickSearchButton();
-
-        //Lista kafelkow
-        List<YTTile> ytTileList = new ArrayList<YTTile>();
-
+        SearchResultsPage searchResults = new SearchResultsPage(driver);
+        ytTileList = searchResults.listTop12FullVideos();
+        searchResults.logFullVideos(ytTileList);
     }
 }

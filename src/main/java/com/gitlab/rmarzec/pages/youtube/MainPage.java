@@ -20,6 +20,8 @@ public class MainPage {
     public Header header;
     @FindBy(xpath = "//div[@id='content-wrapper']")
     WebElement contentCallToActionDiv;
+    @FindBy(id = "chips")
+    WebElement chipsDiv;
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -27,11 +29,6 @@ public class MainPage {
         sidebar = new SideBar(driver);
         header = new Header(driver);
         PageFactory.initElements(driver, this);
-        WaitUtil.waitForPageLoadAndElement(driver, 3, contentCallToActionDiv);
-    }
-
-    public MainPage waitForPageLoad() {
-        WaitUtil.waitForPageLoadAndElement(driver, 3, contentCallToActionDiv);
-        return this;
+        WaitUtil.waitForPageLoadAndElement(driver, 3, contentCallToActionDiv, chipsDiv);
     }
 }

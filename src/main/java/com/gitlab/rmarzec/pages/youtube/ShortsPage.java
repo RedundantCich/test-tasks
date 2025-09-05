@@ -35,6 +35,6 @@ public class ShortsPage {
     }
 
     public void logCurrentYoutuberName() {
-        logger.info("First Shorts' Youtuber Name:\n{}\n", getCurrentYoutuberName());
+        logger.info("\nFirst Shorts' Youtuber Name:\n{}\n", getCurrentYoutuberName());
     }
 }

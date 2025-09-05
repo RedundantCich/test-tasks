@@ -23,7 +23,7 @@ public class SideBar {
 
     public SideBar(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         WaitUtil.waitForPageLoadAndElement(driver, 2, ytLogo);
     }
 
